@@ -4,14 +4,13 @@ import FunctionalComponent from './components/FunctionalComponent';
 
 
 
-export default function App() {
+const App = () => {
   return (
     <ScrollView>
       <Text>Text 1</Text>
       <Text>text 2</Text>
       <ActivityIndicator></ActivityIndicator>
-      <FunctionalComponent exampleVar={'Hello'} buttonTitle={'One'}/>
-      <FunctionalComponent exampleVar={'Bye'} buttonTitle={'Two'}/>
+      <FunctionalComponent buttonTitle={'One'} showButton={true}/>
 
     </ScrollView>
   );
@@ -29,3 +28,6 @@ const styles = StyleSheet.create({
     height: 500,
   },
 });
+
+
+export default App;
