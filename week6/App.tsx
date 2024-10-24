@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import RefreshControlExample from './components/RefreshControlExample';
+import FlatListExample from './components/FlatListExample';
 
 const App = () => {
   const [displayText, setDisplayText] = useState('');
@@ -24,8 +25,8 @@ const App = () => {
       // onHoverIn={showHelperText} onHoverOut={hideHelperText}>
       //     <Text>Button Text</Text>
       // </Pressable> */}
-      <RefreshControlExample />
     // </View>
+    <FlatListExample/>
   );
 }
 
