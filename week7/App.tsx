@@ -18,10 +18,10 @@ function Home({navigation}) {
 
 function Settings({navigation}) {
     return (
-        <View style={styles.container}>
-            <Text>This is settings screen</Text>
-            <Button title={"Settings Again"} onPress={() => navigation.popTo('Settings')}/>
-        </View>
+        <Drawer.Navigator>
+            <Drawer.Screen name="Feed" component={Feed} />
+            <Drawer.Screen name="Article" component={Article} />
+        </Drawer.Navigator>
     );
 }
 
@@ -47,14 +47,10 @@ export default function App() {
   return (
 
       <NavigationContainer>
-          <Drawer.Navigator>
-              <Drawer.Screen name="Feed" component={Feed} />
-              <Drawer.Screen name="Article" component={Article} />
-          </Drawer.Navigator>
-        {/*<Stack.Navigator>*/}
-        {/*  <Stack.Screen name="Home" component={Home}/>*/}
-        {/*  <Stack.Screen name="Settings" component={Settings}/>*/}
-        {/*</Stack.Navigator>*/}
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home}/>
+          <Stack.Screen name="Settings" component={Settings}/>
+        </Stack.Navigator>
       </NavigationContainer>
   );
 }
