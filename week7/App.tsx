@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import {Button, StyleSheet, Text, View} from 'react-native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {NavigationContainer} from "@react-navigation/native";
+import {NavigationContainer} from "@react-navigation/native";import { createDrawerNavigator } from '@react-navigation/drawer';
+
+const Drawer = createDrawerNavigator();
 
 const Stack = createNativeStackNavigator();
 
@@ -23,15 +25,36 @@ function Settings({navigation}) {
     );
 }
 
+function Feed() {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Feed Screen</Text>
+        </View>
+    );
+}
+
+function Article() {
+    return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text>Article Screen</Text>
+        </View>
+    );
+}
+
+
 
 export default function App() {
   return (
 
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home}/>
-          <Stack.Screen name="Settings" component={Settings}/>
-        </Stack.Navigator>
+          <Drawer.Navigator>
+              <Drawer.Screen name="Feed" component={Feed} />
+              <Drawer.Screen name="Article" component={Article} />
+          </Drawer.Navigator>
+        {/*<Stack.Navigator>*/}
+        {/*  <Stack.Screen name="Home" component={Home}/>*/}
+        {/*  <Stack.Screen name="Settings" component={Settings}/>*/}
+        {/*</Stack.Navigator>*/}
       </NavigationContainer>
   );
 }
