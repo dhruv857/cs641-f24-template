@@ -1,8 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import {Button, StyleSheet, Text, View} from 'react-native';
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {NavigationContainer} from "@react-navigation/native";import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+const Tab = createMaterialTopTabNavigator();
 const Drawer = createDrawerNavigator();
 
 const Stack = createNativeStackNavigator();
@@ -25,11 +28,29 @@ function Settings({navigation}) {
     );
 }
 
+function Profile({navigation}) {
+    return (
+        <View style={styles.container}>
+            <Text>This is profile screen</Text>
+        </View>
+    );
+}
+
+function Tags({navigation}) {
+    return (
+        <View style={styles.container}>
+            <Text>This is tags screen</Text>
+        </View>
+    )
+}
+
+
 function Feed() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Feed Screen</Text>
-        </View>
+        <Tab.Navigator>
+            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="Tags" component={Tags} />
+        </Tab.Navigator>
     );
 }
 
