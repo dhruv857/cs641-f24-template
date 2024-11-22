@@ -61,19 +61,28 @@ export class TodoService {
             });
     
             imageUrl = await getDownloadURL(storageRef);
+            await addDoc(collection(db, 'todos'), {
+              text,
+              completed: false,
+              createdAt: new Date(),
+              userId,
+              imageUrl,
+            });
           } catch (error) {
             console.error('Error uploading image:', error);
             throw new Error('Failed to upload image');
+          } 
+        }else {
+            await addDoc(collection(db, 'todos'), {
+              text,
+              completed: false,
+              createdAt: new Date(),
+              userId,
+            });
           }
-        }
-    
-        await addDoc(collection(db, 'todos'), {
-          text,
-          completed: false,
-          createdAt: new Date(),
-          userId,
-          imageUrl,
-        });
+        
+
+
       }
 
     static async toggleTodo(todoId: string, completed: boolean): Promise<void> {
