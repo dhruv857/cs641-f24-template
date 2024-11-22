@@ -53,6 +53,13 @@ export class TodoService {
               userId: userId,
               text: text,
             });
+            await addDoc(collection(db, 'todos'), {
+              text,
+              completed: false,
+              createdAt: new Date(),
+              userId,
+              imageUrl
+            });
             console.log('Upload successful:', imageUrl);
           } catch (error) {
             console.error('Upload failed:', error);
