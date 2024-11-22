@@ -4,6 +4,7 @@ import * as FileSystem from 'expo-file-system';
 import { Todo } from '../types/todo';
 import { db, storage } from '../config/firebaseConfig';
 import { useUser, useAuth } from '@clerk/clerk-expo';
+import uploadImage from './uploadImage.service';
 
 export class TodoService {
       user = useUser();
@@ -47,31 +48,17 @@ export class TodoService {
     
         if (imageUri) {
           try {
-            // Read the file as base64
-            const base64 = await FileSystem.readAsStringAsync(imageUri, {
-              encoding: FileSystem.EncodingType.Base64,
+            const imageUrl = await uploadImage({
+              imageUri: imageUri,
+              storage: storage,
+              db: db,
+              userId: userId,
+              text: text,
             });
-    
-            const imagePath = `todos/${userId}/${Date.now()}.jpg`;
-            const storageRef = ref(storage, imagePath);
-    
-            // Upload the base64 string
-            await uploadString(storageRef, base64, 'base64', {
-              contentType: 'image/jpeg',
-            });
-    
-            imageUrl = await getDownloadURL(storageRef);
-            await addDoc(collection(db, 'todos'), {
-              text,
-              completed: false,
-              createdAt: new Date(),
-              userId,
-              imageUrl,
-            });
+            console.log('Upload successful:', imageUrl);
           } catch (error) {
-            console.error('Error uploading image:', error);
-            throw new Error('Failed to upload image');
-          } 
+            console.error('Upload failed:', error);
+          }
         }else {
             await addDoc(collection(db, 'todos'), {
               text,
