@@ -3,23 +3,14 @@ import { Tabs } from 'expo-router';
 import { useAuth } from '@clerk/clerk-expo';
 import { Redirect } from 'expo-router';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useFirebaseAuth } from '../../hooks/firebase.hook';
 import { ActivityIndicator, View, Text } from 'react-native';
 
 export default function HomeLayout() {
   const { isSignedIn } = useAuth();
-  const { isLoading } = useFirebaseAuth();
 
 
   if (!isSignedIn) {
     return <Redirect href="/sign-in" />;
-  }
-  if (isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#007AFF" />
-      </View>
-    );
   }
 
   // if (!isFirebaseAuthenticated) {
