@@ -31,15 +31,7 @@ const uploadImage = async ({ imageUri, storage, db, userId, text }) => {
       });
     }
 
-    // Get download URL and create todo
     imageUrl = await getDownloadURL(storageRef);
-    await addDoc(collection(db, 'todos'), {
-      text,
-      completed: false,
-      createdAt: new Date(),
-      userId,
-      imageUrl,
-    });
 
     return imageUrl;
   } catch (error) {

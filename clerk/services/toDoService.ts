@@ -1,6 +1,4 @@
 import { collection, query, orderBy, addDoc, updateDoc, deleteDoc, doc, where, getDocs, limit } from 'firebase/firestore';
-import { ref, uploadString, getDownloadURL } from 'firebase/storage';
-import * as FileSystem from 'expo-file-system';
 import { Todo } from '../types/todo';
 import { db, storage } from '../config/firebaseConfig';
 import { useUser, useAuth } from '@clerk/clerk-expo';
